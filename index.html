@@ -253,27 +253,25 @@
       const title = document.getElementById("title")
       const receiver = document.getElementById("receiver")
       const labelElement = document.getElementById("password-label")
+      const inputElement = document.getElementById("password-input")
       typeText(title, title.dataset.text, 50, () => {
         typeText(receiver, receiver.dataset.text, 50, () => {
           typeText(labelElement, labelElement.dataset.text, 50)
         })
       })
 
-      document
-        .getElementById("password-input")
-        .addEventListener("keyup", function (event) {
+      inputElement.addEventListener("keyup", function (event) {
           if (event.key === "Enter") {
             if (this.value === "0202") {
-              document
-                .querySelector('.screen[data-screen="1"]')
-                .classList.remove("show")
-              document
-                .querySelector('.screen[data-screen="2"]')
-                .classList.add("show")
+              document.querySelector('.screen[data-screen="1"]').classList.remove("show")
+              document.querySelector('.screen[data-screen="2"]').classList.add("show")
 
               typeArrayText(array, 50, 0, () => {
                 typeText(heart, heartText, 50)
               })
+            } else {
+              inputElement.value = "";
+              typeText(labelElement, "Пароль неверный, пропробуйте ещё:", 50);
             }
           }
         })
